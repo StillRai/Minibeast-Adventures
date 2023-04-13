@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;600&display=swap');
+
+body {
+  font-family: 'Quicksand', sans-serif;
+} 
+
+.input-check-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.BodyText {
+  font-size: 1.3rem;
+  margin-bottom: 40px ;
+  color: black;
+}
+
+.PhonicsGame .input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PhonicsGame .Check {
+  margin-left: 10px;
+}
+.back-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+
+.PhonicsGame {
+  background-image: url("../images/bg_8.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; 
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.PhonicsGame h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-family: 'Poppins', sans-serif;
+  color: black;
+}
+
+.PhonicsGame img {
+  height: 180px;
+  margin-bottom: 2rem;
+}
+
+.PhonicsGame p {
+  font-size: 1.2rem;
+  margin: 1rem;
+}
+
+.PhonicsGame input {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 8px;
+  border: 0px solid black;
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  max-width: 400px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.PhonicsGame input:hover {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+  border: none !important;
+}
+
+.PhonicsGame button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  background-color: #37515F;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  min-width: 50px;
+}
+
+.PhonicsGame button:hover {
+  background-color: #2D424E;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.PhonicsGame .result {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.PhonicsGame .error {
+  color: red;
+}
+
+.Erase {
+  background-color: #9E7682 !important;
+}
+
+.Erase:hover {
+  background-color: #8f6672 !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.Check {
+  background-color: #25a1a7 !important;
+  padding: 0.5rem;
+  margin: 0rem;
+  border-radius: 8px;
+  text-align: center;
+  height: 54px;
+  max-width: 400px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+.Check:hover {
+  background-color: #1d8186 !important;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .PhonicsGame h1 {
+    font-size: 1.8rem;
+  }
+
+  .PhonicsGame img {
+    height: 150px;
+  }
+
+  .PhonicsGame p {
+    font-size: 1rem;
+  }
+
+  .PhonicsGame input {
+    font-size: 1rem;
+    padding: 0.4rem;
+    height: 35px;
+    max-width: 80%;
+    align-items: center;
+  }
+ 
+  .Check {
+    font-size: 0.3re0.8rem !important;
+    height: 45px;
+    display: block;
+    margin: 0 auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    }
+  .PhonicsGame button {
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    min-width: 40px;
+    margin: 0.5rem 0.25rem;
+
+  }
+
+  .PhonicsGame .result {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+}

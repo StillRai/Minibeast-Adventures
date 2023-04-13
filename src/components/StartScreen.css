@@ -1,0 +1,31 @@
+.StartScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .StartScreen h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .StartScreen button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    background-color: #37515F;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    min-width: 150px;
+  }
+  
+  .StartScreen button:hover {
+    background-color: #2D424E;
+  }
+  
