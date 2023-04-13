@@ -99,10 +99,9 @@ function StartScreen() {
     );
   };
 
-  // ...
   return (
     <div className="StartScreen">
-      <h1>Minibeast Games</h1>
+      <h1>Minibeast Adventures</h1>
       <IconButton
         onClick={() => setOpenModal(true)}
         color="primary"
@@ -120,7 +119,7 @@ function StartScreen() {
 
 function MinibeastApp() {
   return (
-    <div className="App">
+    <div className="App"> 
       <StartScreen />
     </div>
   );
