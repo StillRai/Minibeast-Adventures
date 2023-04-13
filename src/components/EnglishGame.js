@@ -61,8 +61,9 @@ function EnglishGame({ onStart }) {
   };
 
   const navigate = useNavigate();
+
   const goBack = () => {
-    stopAudio()
+audio.pause();
     navigate('/'); 
   };
 
