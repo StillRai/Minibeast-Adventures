@@ -4,7 +4,7 @@ import incorrectSound from '../sounds/incorrect.mp3';
 import './EnglishGame.css';
 import antImg from '../images/ant.png';
 import beetleImg from '../images/beetle.png';
-import butterflyImg from '../images/butterfly.png';
+import butterflyImg from '../images/butterfly.png'; 
 import dragonflyImg from '../images/dragonfly.png';
 import spiderImg from '../images/spider.png';
 import beeImg from '../images/bee.png';
