@@ -44,6 +44,8 @@ function EnglishGame({ onStart }) {
   const [audio, setAudio] = useState(null);
   const [options, setOptions] = useState([]);
   const [firstRender, setFirstRender] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
 
 
   const playAudio = (src) => {
@@ -131,6 +133,7 @@ function EnglishGame({ onStart }) {
   };
 
   const checkAnswer = (chosenAnswer) => {
+    setButtonDisabled(true);
     if (chosenAnswer === correctAnswer) {
       setResult('Correct!');
       setCorrectCount(correctCount + 1);
@@ -142,15 +145,17 @@ function EnglishGame({ onStart }) {
       stopAudio();
       new Audio(incorrectSound).play();
     }
-    setTimeout(() => generateRandomQuestion(), 4000);
+    setTimeout(() => {
+      generateRandomQuestion();
+      setButtonDisabled(false);
+    }, 4000);
   };
-
+  
   useEffect(() => {
     if (!firstRender) generateRandomQuestion();
     else setFirstRender(false);
   }, [firstRender, generateRandomQuestion]);
   
-
   return (
     <div className="EnglishGame">
       <IconButton onClick={goBack} style={{ position: 'absolute', top: 10, left: 10 }}>
@@ -163,11 +168,11 @@ function EnglishGame({ onStart }) {
         <div className="options">
           {options.map((option, index) => (
             <img
-              key={index}
-              src={insects.find(i => i.name === option).image}
-              alt={option}
-              onClick={() => checkAnswer(option)}
-            />
+  key={index}
+  src={insects.find(i => i.name === option).image}
+  alt={option}
+  onClick={buttonDisabled ? null : () => checkAnswer(option)}
+/>
           ))}
         </div>
       </div>
