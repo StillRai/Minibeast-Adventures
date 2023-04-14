@@ -2,7 +2,7 @@
   "name": "minibeast-adventures",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://stillrai.github.io/Minibeast-Adventures/",
+  "homepage": "https://minibeast-adventures.netlify.app",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -32,6 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-netlify": "CI= react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

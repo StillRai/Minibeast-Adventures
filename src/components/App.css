@@ -4,7 +4,7 @@
 body {
   font-family: 'Quicksand', sans-serif; 
 }
-
+ 
 .StartScreen {
   position: relative;
   background-image: url("../images/bg_1.jpg");
@@ -42,7 +42,7 @@ body {
 }
 
 #modal-title {
-  margin-top: 30vh;
+  margin-top: 15vw;
 }
 
 .StartScreen button:first-of-type {
@@ -89,6 +89,7 @@ video {
   margin-bottom: 2rem;
   font-family: 'Poppins', sans-serif;
   color: black;
+  margin-top: 7vw;
 }
 
 .MathGame h2 {

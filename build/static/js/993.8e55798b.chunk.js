@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkminibeast_adventures=self.webpackChunkminibeast_adventures||[]).push([[993],{4993:function(e,s,t){e.exports=t.p+"static/media/L.5df6e539f89bf3d859a1.mp3"}}]);

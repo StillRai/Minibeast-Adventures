@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
 function PhonicsGame() {
   const [question, setQuestion] = useState('');
   const [result, setResult] = useState('');

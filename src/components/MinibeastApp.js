@@ -90,7 +90,7 @@ function StartScreen() {
           <h2 id="modal-title">About the Game</h2>
           <div className="modal-description">
             <p id="modal-description">
-              Welcome to the Minibeast Adventure! <br /> <br /> This is a fun game that I created with my mom. There are 3 different activities. You can add and count the minibeasts in the Math game, spell the minibeasts names in the Phonics game or test what you know about these little friends in the Quiz games. There are nice sounds in the game, so make sure your volume is just right. Have a great time playing!
+              Welcome to the Minibeast Adventure! <br /> <br /> This is a fun game that I made with my mom. It has lots of different activities about cute and tiny creatures called minibeasts. You can add and count in the math game. Spell the name of the bugs in the phonics game, or test yourself by answering questions in the Quiz game. There are nice sounds in the game, so make sure your volume is just right. Have a great time playing! Asaru.
             </p>
           </div>
           <video src={asaruMessageVideo} controls></video>
@@ -99,9 +99,9 @@ function StartScreen() {
     );
   };
 
-  return ( 
+  return (
     <div className="StartScreen">
-      <h1>Minibeast Adventures</h1>
+      <h1>Minibeast Adventures</h1> 
       <IconButton
         onClick={() => setOpenModal(true)}
         color="primary"
@@ -119,7 +119,7 @@ function StartScreen() {
 
 function MinibeastApp() {
   return (
-    <div className="App">
+    <div className="App"> 
       <StartScreen />
     </div>
   );

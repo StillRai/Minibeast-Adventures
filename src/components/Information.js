@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import video from '../videos/Asaru_message.mp4';
 
 function Information({ onClose }) {
-  return (
+  return ( 
     <div className="Information">
       <video controls>
         <source src={video} type="video/mp4" />
