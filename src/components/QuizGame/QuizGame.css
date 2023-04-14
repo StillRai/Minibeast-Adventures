@@ -9,7 +9,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url("../images/bg_8.jpg");
+  background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456160/Minibeast-Mergers_Project/bg_8_zmpvaz.jpg");
   background-size: cover; /* Updated to cover */
   background-position: center;
   background-repeat: no-repeat;

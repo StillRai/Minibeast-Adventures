@@ -1,36 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import correctSound from '../sounds/correct.mp3'; 
-import incorrectSound from '../sounds/incorrect.mp3';
-import './EnglishGame.css';
-import antImg from '../images/ant.png';
-import beetleImg from '../images/beetle.png';
-import butterflyImg from '../images/butterfly.png'; 
-import dragonflyImg from '../images/dragonfly.png';
-import spiderImg from '../images/spider.png';
-import beeImg from '../images/bee.png';
-import flyImg from '../images/fly.png';
-import ladybirdImg from '../images/ladybird.png';
-import wormImg from '../images/worm.png';
-import q1 from '../sounds/q1.mp3';
-import q2 from '../sounds/q2.mp3';
-import q3 from '../sounds/q3.mp3';
-import q4 from '../sounds/q4.mp3';
-import q5 from '../sounds/q5.mp3';
-import q6 from '../sounds/q6.mp3';
-import q7 from '../sounds/q7.mp3';
-import q8 from '../sounds/q8.mp3';
-import q9 from '../sounds/q9.mp3';
-import q10 from '../sounds/q10.mp3';
-import q11 from '../sounds/q11.mp3';
-import q12 from '../sounds/q12.mp3';
-import q13 from '../sounds/q13.mp3';
-import q14 from '../sounds/q14.mp3';
-import q15 from '../sounds/q15.mp3';
-import q16 from '../sounds/q16.mp3';
-import q17 from '../sounds/q17.mp3';
-import q18 from '../sounds/q18.mp3';
-import q19 from '../sounds/q19.mp3';
-import q20 from '../sounds/q20.mp3';
+import React, { useState, useEffect, useCallback } from 'react';
+import correctSound from '../../sounds/correct.mp3'; 
+import incorrectSound from '../../sounds/incorrect.mp3';
+import './QuizGame.css';
+import antImg from '../../images/ant.png';
+import beetleImg from '../../images/beetle.png';
+import butterflyImg from '../../images/butterfly.png'; 
+import dragonflyImg from '../../images/dragonfly.png';
+import spiderImg from '../../images/spider.png';
+import beeImg from '../../images/bee.png';
+import flyImg from '../../images/fly.png';
+import ladybirdImg from '../../images/ladybird.png';
+import wormImg from '../../images/worm.png';
+import q1 from '../../sounds/q1.mp3';
+import q2 from '../../sounds/q2.mp3';
+import q3 from '../../sounds/q3.mp3';
+import q4 from '../../sounds/q4.mp3';
+import q5 from '../../sounds/q5.mp3';
+import q6 from '../../sounds/q6.mp3';
+import q7 from '../../sounds/q7.mp3';
+import q8 from '../../sounds/q8.mp3';
+import q9 from '../../sounds/q9.mp3';
+import q10 from '../../sounds/q10.mp3';
+import q11 from '../../sounds/q11.mp3';
+import q12 from '../../sounds/q12.mp3';
+import q13 from '../../sounds/q13.mp3';
+import q14 from '../../sounds/q14.mp3';
+import q15 from '../../sounds/q15.mp3';
+import q16 from '../../sounds/q16.mp3';
+import q17 from '../../sounds/q17.mp3';
+import q18 from '../../sounds/q18.mp3';
+import q19 from '../../sounds/q19.mp3';
+import q20 from '../../sounds/q20.mp3';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -63,15 +63,12 @@ function EnglishGame({ onStart }) {
   const navigate = useNavigate();
 
   const goBack = () => {
-audio.pause();
-    navigate('/'); 
+    if (audio) {
+      audio.pause();
+    }
+    navigate('/');
   };
-
-  useEffect(() => {
-    if (!firstRender) generateRandomQuestion();
-    else setFirstRender(false);
-  }, [firstRender]);
-
+  
   const questions = [
     { text: 'Which one transforms after being a caterpillar?', answer: 'Butterfly', audio: q1 },
     { text: 'which one has a fuzzy body and can collect nectar from flowers?', answer: 'Bee', audio: q2 },
@@ -107,14 +104,15 @@ audio.pause();
     { name: 'Ant', image: antImg },
   ];
 
-  const generateRandomQuestion = () => {
+  const generateRandomQuestion = useCallback(() => {
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     setCorrectAnswer(randomQuestion.answer);
     setQuestion(randomQuestion.text);
     setResult('');
     generateOptions(randomQuestion.answer);
     playAudio(randomQuestion.audio);
-  };
+  }, []);
+  
 
   const generateOptions = (correctAnswer) => {
     const wrongAnswers = insects.filter(i => i.name !== correctAnswer).map(i => i.name);
@@ -146,6 +144,12 @@ audio.pause();
     }
     setTimeout(() => generateRandomQuestion(), 4000);
   };
+
+  useEffect(() => {
+    if (!firstRender) generateRandomQuestion();
+    else setFirstRender(false);
+  }, [firstRender, generateRandomQuestion]);
+  
 
   return (
     <div className="EnglishGame">

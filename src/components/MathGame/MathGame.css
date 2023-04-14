@@ -1,0 +1,177 @@
+.MathGame {
+    background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456160/Minibeast-Mergers_Project/bg_8_zmpvaz.jpg");
+    background-size: cover;
+    background-position: left 0 top -50px;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    background-color: #fff;
+  }
+  
+  .MathGame h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-family: 'Poppins', sans-serif;
+    color: black;
+    margin-top: 7vw;
+  }
+  
+  .MathGame h2 {
+    font-size: 2rem;
+    margin-bottom: 0rem;
+    margin-top: -0.4rem;
+  }
+  
+  .MathGame img {
+    height: 80px;
+    margin: 0.5rem;
+  }
+  
+  .MathGame p {
+    font-size: 1.2rem;
+    margin: 1rem;
+  }
+  
+  .MathGame input {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 8px;
+    border: 0px solid black;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    max-width: 400px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .MathGame .score {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black;
+    font-size: 0.8rem;
+  }
+  
+  .input-check-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .MathGame .Check {
+    padding: 0.5rem;
+    margin: 0rem;
+    border-radius: 8px;
+    text-align: center;
+    height: 57px;
+    max-width: 400px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .BodyText {
+    font-size: 1.3rem;
+    color: white;
+  }
+  
+  .MathGame .error {
+    color: red;
+  }
+  
+  .MathGame .result {
+    position: relative;
+    color: black;
+    left: 1vh;
+    font-size: 0.9rem !important;
+  }
+  
+  .MathGame button {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    background-color: #2D5D7B;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  
+    transition: background-color 0.2s ease-in-out;
+    margin-bottom: 0px !important;
+  }
+  
+  .NextQuestion {
+    background-color: #9E7682 !important;
+  }
+  
+  .NextQuestion:hover {
+    background-color: #8f6672 !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+  
+  .Check {
+    background-color: #25a1a7 !important;
+  }
+  
+  .Check:hover {
+    background-color: #1d8186 !important;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  }
+  
+  .MathGame input:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    border: none !important;
+  }
+  
+  @media (max-width: 768px) {
+    .MathGame h1 {
+      font-size: 1.8rem;
+    }
+  
+    .MathGame h2 {
+        font-size: 1.8rem;
+      }
+      
+      .MathGame img {
+        height: 60px;
+      }
+      
+      .MathGame p {
+        font-size: 1rem;
+      }
+      
+      .MathGame input {
+        height: 35px;
+        max-width: 300px;
+      }
+      
+      .MathGame .score {
+        font-size: 0.6rem;
+      }
+      
+      .input-check-container {
+        flex-direction: column;
+      }
+      
+      .MathGame .Check {
+        height: 40px;
+        max-width: 300px;
+      }
+      
+      .BodyText {
+        font-size: 1.1rem;
+      }
+      
+      .MathGame .result {
+        font-size: 0.8rem !important;
+      }
+      
+      .MathGame button {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+        margin: 0.8rem;
+      }
+      
+      .MathGame input:hover {
+        box-shadow: none;
+      }
+      }
+      

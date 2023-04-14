@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import correctSound from '../sounds/correct.mp3';
-import incorrectSound from '../sounds/incorrect.mp3';
+import correctSound from '../../sounds/correct.mp3';
+import incorrectSound from '../../sounds/incorrect.mp3';
 import './PhonicsGame.css';
-import antImg from '../images/ant.png';
-import beetleImg from '../images/beetle.png';
-import butterflyImg from '../images/butterfly.png';
-import dragonflyImg from '../images/dragonfly.png';
-import spiderImg from '../images/spider.png';
-import beeImg from '../images/bee.png';
-import flyImg from '../images/fly.png';
-import ladybirdImg from '../images/ladybird.png';
-import wormImg from '../images/worm.png';
+import antImg from '../../images/ant.png';
+import beetleImg from '../../images/beetle.png';
+import butterflyImg from '../../images/butterfly.png';
+import dragonflyImg from '../../images/dragonfly.png';
+import spiderImg from '../../images/spider.png';
+import beeImg from '../../images/bee.png';
+import flyImg from '../../images/fly.png';
+import ladybirdImg from '../../images/ladybird.png';
+import wormImg from '../../images/worm.png';
 import throttle from 'lodash.throttle';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
@@ -26,14 +26,28 @@ function PhonicsGame() {
   const [audio, setAudio] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const navigate = useNavigate();
+
   const goBack = () => {
     navigate('/'); 
   };
-  
+
+  useEffect(() => {
+    preloadLetterSounds();
+  }, []);
+
+  const preloadLetterSounds = () => {
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    letters.split('').forEach(async (letter) => {
+      const audioPath = await import(`../../sounds/${letter}.mp3`);
+      const audio = new Audio(audioPath.default);
+      audio.load();
+    });
+  };  
   const playAudio = (src) => {
     if (audio) {
       audio.pause();
     }
+
     const newAudio = new Audio(src);
     newAudio.play();
     setAudio(newAudio);
@@ -145,7 +159,7 @@ function PhonicsGame() {
   };
 
   const playLetterSound = async (letter) => {
-    const audioPath = await import(`../sounds/${letter}.mp3`);
+    const audioPath = await import(`../../sounds/${letter}.mp3`);
     new Audio(audioPath.default).play();
   };
 

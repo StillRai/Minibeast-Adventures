@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import MinibeastApp from './components/MinibeastApp';
-import MathGame from './components/MathGame';
-import QuizGame from './components/EnglishGame';
-import PhonicsGame from './components/PhonicsGame'
+import MathGame from './components/MathGame/MathGame';
+import QuizGame from './components/QuizGame/QuizGame';
+import PhonicsGame from './components/PhonicsGame/PhonicsGame'
 
 function App() {
   return (

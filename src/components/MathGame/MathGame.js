@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import antImg from '../images/ant.png';
-import beetleImg from '../images/beetle.png';
-import beeImg from '../images/bee.png';
-import butterflyImg from '../images/butterfly.png'; 
-import dragonflyImg from '../images/dragonfly.png';
-import spiderImg from '../images/spider.png';
-import caterpillarImg from '../images/caterpillar.png';
-import flyImg from '../images/fly.png';
-import ladybirdImg from '../images/ladybird.png';
-import wormImg from '../images/worm.png';
-import correctSound from '../sounds/correct.mp3';
-import incorrectSound from '../sounds/incorrect.mp3';
+import './MathGame.css';
+import antImg from '../../images/ant.png';
+import beetleImg from '../../images/beetle.png';
+import beeImg from '../../images/bee.png';
+import butterflyImg from '../../images/butterfly.png'; 
+import dragonflyImg from '../../images/dragonfly.png';
+import spiderImg from '../../images/spider.png';
+import caterpillarImg from '../../images/caterpillar.png';
+import flyImg from '../../images/fly.png';
+import ladybirdImg from '../../images/ladybird.png';
+import wormImg from '../../images/worm.png';
+import correctSound from '../../sounds/correct.mp3';
+import incorrectSound from '../../sounds/incorrect.mp3';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -52,7 +52,7 @@ function MathGame({ onStart }) {
 
     const addDigit = (digit) => setAnswer(answer + digit);
     const playDigitSound = async (digit) => {
-        const audioPath = await import(`../sounds/${digit}.mp3`);
+        const audioPath = await import(`../../sounds/${digit}.mp3`);
         new Audio(audioPath.default).play();
     };
     const handleInputChange = (event) => setAnswer(event.target.value);

@@ -4,7 +4,12 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    position: relative;
+    background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456162/Minibeast-Mergers_Project/bg_1_ucvehq.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
   }
   
   .StartScreen h1 {
@@ -29,3 +34,102 @@
     background-color: #2D424E;
   }
   
+
+
+  /*App CSS */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;600&display=swap');
+
+body {
+  font-family: 'Quicksand', sans-serif; 
+}
+ 
+.StartScreen {
+  position: relative;
+  background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456162/Minibeast-Mergers_Project/bg_1_ucvehq.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.back-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 480px) {
+  .modal-content {
+    max-height: 70vh; 
+    overflow-y: auto; 
+  }
+}
+
+#modal-title {
+  margin-top: 15vw;
+}
+
+.StartScreen button:first-of-type {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.StartScreen video {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+}
+
+video {
+  max-width: 40vw !important;
+}
+
+.modal-description {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  color: #4a4a4a;
+  border-radius: 10px;
+  padding: 20px;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 90%;
+  margin-top: -20px;
+}
+
+@media (max-width: 768px) {
+  video {
+    max-height: 30vh;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 480px) {
+  .modal-description {
+    font-size: 0.9rem;
+    padding: 5px;
+    width: 100%;
+  }
+
+  #modal-title {
+    margin-top: 30vh;
+  }
+
+  video {
+    max-height: 40vh;
+  }
+}
