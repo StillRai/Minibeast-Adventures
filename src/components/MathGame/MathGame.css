@@ -148,12 +148,14 @@
       }
       
       .input-check-container {
-        flex-direction: column;
+        flex-direction: row
       }
       
       .MathGame .Check {
-        height: 40px;
+        height: 50px;
         max-width: 300px;
+        font-size: 1.4vh;
+
       }
       
       .BodyText {
@@ -175,3 +177,4 @@
       }
       }
       
+     

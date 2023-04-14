@@ -9,11 +9,10 @@ body {
   align-items: center;
   justify-content: center;
 }
-
  
 .BodyText {
   font-size: 1.3rem;
-  margin-bottom: 40px ;
+ padding-bottom: 40px ;
   color: black;
 }
 
@@ -23,9 +22,6 @@ body {
   align-items: center;
 }
 
-.PhonicsGame .Check {
-  margin-left: 10px;
-}
 .back-icon {
   position: absolute;
   top: 10px;
@@ -33,11 +29,10 @@ body {
   cursor: pointer;
 }
 
-
 .PhonicsGame {
   background-image: url("../../images/bg_8.jpg");
   background-size:cover;
-  background-position: left 0 top -40px; 
+  background-position: left 0 top 0px; 
   background-repeat: no-repeat;
   background-color: #fff;
   min-height: 100vh;
@@ -45,20 +40,20 @@ body {
 
 .PhonicsGame h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  /* padding-bottom: 2rem; */
   font-family: 'Poppins', sans-serif;
   color: black;
-  margin-top: 8vw;
+  padding-top: 8vw;
 }
 
 .PhonicsGame img {
   height: 180px;
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 
 .PhonicsGame p {
   font-size: 1.2rem;
-  margin: 1rem;
+  padding: 1rem;
 }
 
 .PhonicsGame input {
@@ -99,7 +94,7 @@ body {
 
 .PhonicsGame .result {
   font-size: 1.5rem;
-  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .PhonicsGame .error {
@@ -134,8 +129,20 @@ body {
 
 /* Responsive styles */
 @media (max-width: 768px) {
+  .PhonicsGame {
+    background-image: url("../../images/bg_8.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    min-height: 100%;
+  }
+
   .PhonicsGame h1 {
     font-size: 1.8rem;
+      padding-top: 100px;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+
   }
 
   .PhonicsGame img {
@@ -154,24 +161,22 @@ body {
     align-items: center;
   }
  
-  .Check {
-    font-size: 0.3re0.8rem !important;
-    height: 45px;
-    display: block;
-    margin: 0 auto;
-    margin-left: 10px;
-    margin-right: 10px;
-    }
+  .PhonicsGame .Check {
+    height: 50px;
+    max-width: 300px;
+    font-size: 1.4vh;
+    text-align: center;
+
+  }
   .PhonicsGame button {
     font-size: 1rem;
     padding: 0.4rem 0.8rem;
     min-width: 40px;
     margin: 0.5rem 0.25rem;
-
   }
 
   .PhonicsGame .result {
     font-size: 1rem;
-    margin-bottom: 15px;
+    padding-bottom: 15px;
   }
 }
