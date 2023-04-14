@@ -90,7 +90,7 @@ function StartScreen() {
           <h2 id="modal-title">About the Game</h2>
           <div className="modal-description">
             <p id="modal-description">
-              Welcome to the Minibeast Adventure! <br /> <br /> This is a fun game that I made with my mom. It has lots of different activities about cute and tiny creatures called minibeasts. You can add and count in the math game. Spell the name of the bugs in the phonics game, or test yourself by answering questions in the Quiz game. There are nice sounds in the game, so make sure your volume is just right. Have a great time playing! Asaru.
+              Welcome to the Minibeast Adventure! <br /> <br /> This is a fun game that I made with my mom. It has lots of different activities about cute and tiny creatures called minibeasts. You can add and count in the math game. Spell the name of the bugs in the phonics game or test yourself by answering questions in the Quiz game. There are nice sounds in the game, so make sure your volume is just right. Have a great time playing! Asaru.
             </p>
           </div>
           <video src={asaruMessageVideo} controls></video>

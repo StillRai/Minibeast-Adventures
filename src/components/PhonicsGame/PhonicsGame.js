@@ -253,14 +253,6 @@ function PhonicsGame() {
         </div>
       </div>
       <div className="start-button-container">
-        <button
-          className="start-button"
-          onClick={nextQuestion}
-          onMouseEnter={() => playAudio(process.env.PUBLIC_URL + '/sounds/new_question.mp3')}
-          onMouseLeave={stopAudio}
-        >
-          New question
-        </button>
       </div>
     </>
   );

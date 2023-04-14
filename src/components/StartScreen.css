@@ -5,7 +5,7 @@
     align-items: center;
     height: 100vh;
     position: relative;
-    background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456162/Minibeast-Mergers_Project/bg_1_ucvehq.jpg");
+    background-image: url("../images/bg_1.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -33,8 +33,6 @@
   .StartScreen button:hover {
     background-color: #2D424E;
   }
-  
-
 
   /*App CSS */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;600&display=swap');
@@ -43,14 +41,6 @@ body {
   font-family: 'Quicksand', sans-serif; 
 }
  
-.StartScreen {
-  position: relative;
-  background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456162/Minibeast-Mergers_Project/bg_1_ucvehq.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
 
 .modal-content {
   max-height: 90vh;

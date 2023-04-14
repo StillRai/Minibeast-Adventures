@@ -35,12 +35,12 @@ body {
 
 
 .PhonicsGame {
-  background-image: url("https://res.cloudinary.com/dwtfr52ea/image/upload/v1681456160/Minibeast-Mergers_Project/bg_8_zmpvaz.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; 
-  min-height: 100vh;
+  background-image: url("../../images/bg_8.jpg");
+  background-size:cover;
+  background-position: left 0 top -40px; 
+  background-repeat: no-repeat;
   background-color: #fff;
+  min-height: 100vh;
 }
 
 .PhonicsGame h1 {
