@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 import correctSound from '../../sounds/correct.mp3'; 
 import incorrectSound from '../../sounds/incorrect.mp3';
 import './QuizGame.css';
@@ -45,8 +47,8 @@ function EnglishGame({ onStart }) {
   const [options, setOptions] = useState([]);
   const [firstRender, setFirstRender] = useState(true);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-
-
+  const [questionCount, setQuestionCount] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const playAudio = (src) => {
     if (audio) audio.pause();
@@ -146,8 +148,13 @@ function EnglishGame({ onStart }) {
       new Audio(incorrectSound).play();
     }
     setTimeout(() => {
-      generateRandomQuestion();
-      setButtonDisabled(false);
+      if (questionCount < 2) {
+        setQuestionCount(questionCount + 1);
+        generateRandomQuestion();
+        setButtonDisabled(false);
+      } else {
+        setShowModal(true);
+      }
     }, 4000);
   };
   
@@ -177,6 +184,26 @@ function EnglishGame({ onStart }) {
         </div>
       </div>
       <div className="result">{result}</div>
+      <Modal open={showModal} onClose={() => setShowModal(false)}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            border: '2px solid #000',
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <h2>Final Score</h2>
+          <p>
+            Correct: {correctCount} <br />
+            Incorrect: {incorrectCount}
+          </p>
+        </Box>
+      </Modal>  
     </div>
   );
 }
