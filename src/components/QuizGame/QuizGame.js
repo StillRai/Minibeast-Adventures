@@ -36,6 +36,8 @@ import q20 from '../../sounds/q20.mp3';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
 
 function EnglishGame({ onStart }) {
   const [question, setQuestion] = useState('');
@@ -49,6 +51,8 @@ function EnglishGame({ onStart }) {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [questionCount, setQuestionCount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [correctAudio, setCorrectAudio] = useState(null);
+  const [incorrectAudio, setIncorrectAudio] = useState(null);
 
   const playAudio = (src) => {
     if (audio) audio.pause();
@@ -62,15 +66,53 @@ function EnglishGame({ onStart }) {
       audio.pause();
       setAudio(null);
     }
+    if (correctAudio) {
+      correctAudio.pause();
+      setCorrectAudio(null);
+    }
+    if (incorrectAudio) {
+      incorrectAudio.pause();
+      setIncorrectAudio(null);
+    }
   };
 
   const navigate = useNavigate();
 
   const goBack = () => {
     if (audio) {
-      audio.pause();
+      stopAudio();
+    }
+    if (correctAudio) {
+      correctAudio.pause();
+      setCorrectAudio(null);
+    }
+    if (incorrectAudio) {
+      incorrectAudio.pause();
+      setIncorrectAudio(null);
     }
     navigate('/');
+  };
+
+  useEffect(() => {
+    return () => {
+      stopAudio();
+    };
+  }, []);
+
+  const resetGame = () => {
+    setQuestion('');
+    setCorrectAnswer('');
+    setResult('');
+    setCorrectCount(0);
+    setIncorrectCount(0);
+    setAudio(null);
+    setOptions([]);
+    setFirstRender(true);
+    setButtonDisabled(false);
+    setQuestionCount(0);
+    setShowModal(false);
+    setCorrectAudio(null);
+    setIncorrectAudio(null);
   };
   
   const questions = [
@@ -116,7 +158,6 @@ function EnglishGame({ onStart }) {
     generateOptions(randomQuestion.answer);
     playAudio(randomQuestion.audio);
   }, []);
-  
 
   const generateOptions = (correctAnswer) => {
     const wrongAnswers = insects.filter(i => i.name !== correctAnswer).map(i => i.name);
@@ -136,19 +177,22 @@ function EnglishGame({ onStart }) {
 
   const checkAnswer = (chosenAnswer) => {
     setButtonDisabled(true);
+    stopAudio(); // Move this call to the beginning
     if (chosenAnswer === correctAnswer) {
       setResult('Correct!');
       setCorrectCount(correctCount + 1);
-      stopAudio();
-      new Audio(correctSound).play();
+      const newCorrectAudio = new Audio(correctSound);
+      newCorrectAudio.play();
+      setCorrectAudio(newCorrectAudio);
     } else {
       setResult(`Incorrect. The answer is ${correctAnswer}.`);
       setIncorrectCount(incorrectCount + 1);
-      stopAudio();
-      new Audio(incorrectSound).play();
+      const newIncorrectAudio = new Audio(incorrectSound);
+      newIncorrectAudio.play();
+      setIncorrectAudio(newIncorrectAudio);
     }
     setTimeout(() => {
-      if (questionCount < 2) {
+      if (questionCount < 9) {
         setQuestionCount(questionCount + 1);
         generateRandomQuestion();
         setButtonDisabled(false);
@@ -168,7 +212,7 @@ function EnglishGame({ onStart }) {
       <IconButton onClick={goBack} style={{ position: 'absolute', top: 10, left: 10 }}>
         <ArrowBackIcon />
       </IconButton> 
-      <div className="score">Correct: {correctCount}&emsp;  |  &emsp;Incorrect: {incorrectCount}</div>
+      <div className="score">Correct: {correctCount} / 10 </div>
       <h1>Minibeast Quiz</h1>
       <div className="question">
         <div className="BodyText">{question}</div>
@@ -198,7 +242,8 @@ function EnglishGame({ onStart }) {
           }}
         >
           <h2>Final Score</h2>
-          <p>
+          <div className='finalscore'>{correctCount > incorrectCount ? <SentimentVerySatisfiedIcon /> : <SentimentVeryDissatisfiedIcon /> }</div>
+          <p className='finalscore'>
             Correct: {correctCount} <br />
             Incorrect: {incorrectCount}
           </p>
