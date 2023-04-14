@@ -10,11 +10,14 @@ import spiderImg from '../../images/spider.png';
 import beeImg from '../../images/bee.png';
 import flyImg from '../../images/fly.png';
 import ladybirdImg from '../../images/ladybird.png';
+import caterpillarImg from '../../images/caterpillar.png';
 import wormImg from '../../images/worm.png';
 import throttle from 'lodash.throttle';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 function PhonicsGame() {
   const [question, setQuestion] = useState('');
@@ -26,6 +29,23 @@ function PhonicsGame() {
   const [audio, setAudio] = useState(null);
   const [showResult, setShowResult] = useState(false);
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [questionsAnswered, setQuestionsAnswered] = useState(0);
+
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+
+const handleExit = () => {
+closeModal();
+goBack();
+};
 
   const goBack = () => {
     navigate('/'); 
@@ -78,6 +98,8 @@ function PhonicsGame() {
     { id: 7, question: 'What is the name of this insect?', image: flyImg, answer: 'Fly' },
     { id: 8, question: 'What is the name of this insect?', image: ladybirdImg, answer: 'Ladybird' },
     { id: 9, question: 'What is the name of this insect?', image: wormImg, answer: 'Worm' },
+    { id: 10, question: 'What is the name of this insect?', image: caterpillarImg, answer: 'Caterpillar' },
+
   ];
 
   const [currentQuestion, setCurrentQuestion] = useState(null);
@@ -114,6 +136,9 @@ function PhonicsGame() {
     if (!currentQuestion) {
       return;
     }
+
+    setIsCheckDisabled(true); 
+
     const currentImage = currentQuestion.image;
     const correctAnswer = currentQuestion.answer.toUpperCase();
     const isCorrectAnswer = inputValue.toLowerCase() === correctAnswer.toLowerCase();
@@ -121,29 +146,34 @@ function PhonicsGame() {
       setInputValue('Correct!')
       setCorrectCount(correctCount + 1);
       new Audio(correctSound).play();
-          setTimeout(() => {
-            setResult("");
-            }, 2000);
+      setTimeout(() => {
+        setResult("");
+      }, 2000);
     } else {
       setInputValue(`Incorrect. The answer is ${correctAnswer}.`);
       setIncorrectCount(incorrectCount + 1);
       new Audio(incorrectSound).play();
       setTimeout(() => {
-      setResult("");
-    }, 2000);
+        setResult("");
+      }, 2000);
     }
-
+    setQuestionsAnswered(questionsAnswered + 1);
+    if (questionsAnswered + 1 >= 10) {
+      toggleModal();
+    }
+  
     setShowResult(true); 
     setTimeout(() => {
       setShowResult(false);
       generateRandomQuestion();
+      setIsCheckDisabled(false); 
     }, 2000);
-
+  
     const checkButton = document.querySelector('.Check');
     if (checkButton && checkButton.classList) {
       checkButton.classList.add('disabled');
     }
-  };
+  }; 
 
   const handleInputChange = (event) => {
     const previousValue = inputValue;
@@ -222,12 +252,18 @@ function PhonicsGame() {
               <div className="result">{result}</div>
             )}
             <button
-              className="Check"
-              onClick={checkAnswer}
-              onMouseLeave={stopAudio}
-            >
-              Check
-            </button>
+  className="Check"
+  onClick={() => {
+    if (!isCheckDisabled) {
+      checkAnswer();
+    }
+  }}
+  disabled={isCheckDisabled}
+  onMouseLeave={stopAudio}
+>
+  Check
+</button>
+
           </div>
 
           <div className="buttons-container">
@@ -254,6 +290,35 @@ function PhonicsGame() {
       </div>
       <div className="start-button-container">
       </div>
+      <Modal
+  open={showModal}
+  onClose={closeModal}
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+>
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      bgcolor: 'background.paper',
+      boxShadow: 24,
+      borderRadius: '5px',
+      p: 4,
+      minWidth: '30%',
+      maxWidth: '90%',
+      textAlign: 'center',
+    }}
+  >
+    <h2 id="modal-title">Final Score</h2>
+          <p className='finalscore'>
+            Correct: {correctCount} <br />
+            Incorrect: {incorrectCount}
+          </p>
+          <button className="quiz-modal-button" onClick={handleExit}>Close</button>
+  </Box>
+</Modal>
     </>
   );
 }

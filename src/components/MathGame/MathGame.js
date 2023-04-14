@@ -3,7 +3,7 @@ import './MathGame.css';
 import antImg from '../../images/ant.png';
 import beetleImg from '../../images/beetle.png';
 import beeImg from '../../images/bee.png';
-import butterflyImg from '../../images/butterfly.png'; 
+import butterflyImg from '../../images/butterfly.png';
 import dragonflyImg from '../../images/dragonfly.png';
 import spiderImg from '../../images/spider.png';
 import caterpillarImg from '../../images/caterpillar.png';
@@ -15,6 +15,11 @@ import incorrectSound from '../../sounds/incorrect.mp3';
 import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+
 
 const minibeasts = [
     { id: 1, name: 'Ant', image: antImg, value: 1 },
@@ -36,12 +41,31 @@ function MathGame({ onStart }) {
     const [insectIndices1, setInsectIndices1] = useState(Array.from({ length: num1 }, () => Math.floor(Math.random() * minibeasts.length)));
     const [insectIndices2, setInsectIndices2] = useState(Array.from({ length: num2 }, () => Math.floor(Math.random() * minibeasts.length)));
     const [answer, setAnswer] = useState('');
+    const [questionsAnswered, setQuestionsAnswered] = useState(0);
     const [correctCount, setCorrectCount] = useState(0);
     const [incorrectCount, setIncorrectCount] = useState(0);
     const [audio, setAudio] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+
+
     const navigate = useNavigate();
     const goBack = () => {
-      navigate('/'); 
+        navigate('/');
+    };
+
+    const toggleModal = () => {
+        setShowModal(!showModal);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+
+    const handleExit = () => {
+        closeModal();
+        goBack();
     };
 
     const handleKeyDown = (event) => {
@@ -82,19 +106,21 @@ function MathGame({ onStart }) {
         const newNum1 = Math.ceil(Math.random() * 9);
         let newNum2 = Math.ceil(Math.random() * (10 - newNum1));
         if (newNum2 === 0) {
-          newNum2 = 1;
+            newNum2 = 1;
         }
         setNum1(newNum1);
         setNum2(newNum2);
         setAnswer('');
-    
+
         const newInsectIndices1 = Array.from({ length: newNum1 }, () => Math.floor(Math.random() * minibeasts.length));
         const newInsectIndices2 = Array.from({ length: newNum2 }, () => Math.floor(Math.random() * minibeasts.length));
         setInsectIndices1(newInsectIndices1);
         setInsectIndices2(newInsectIndices2);
-      };
+        setButtonDisabled(false);
+    };
 
     const checkAnswer = () => {
+        setButtonDisabled(true);
         const parsedAnswer = parseInt(answer, 10);
         if (parsedAnswer === (num1 + num2)) {
             setAnswer("Correct!");
@@ -104,6 +130,10 @@ function MathGame({ onStart }) {
             setTimeout(() => {
                 setAnswer("");
                 generateRandomNumbers();
+                setQuestionsAnswered(questionsAnswered + 1);
+                if (questionsAnswered >= 9) {
+                    toggleModal();
+                }
             }, 2000);
         } else {
             setAnswer(`Incorrect. The correct answer is ${num1 + num2}.`);
@@ -113,28 +143,32 @@ function MathGame({ onStart }) {
             setTimeout(() => {
                 setAnswer("");
                 generateRandomNumbers();
+                setQuestionsAnswered(questionsAnswered + 1);
+                if (questionsAnswered >= 9) {
+                    toggleModal();
+                }
             }, 2000);
         }
     };
 
     return (
         <div className="MathGame">
-          <IconButton onClick={goBack} style={{ position: 'absolute', top: 10, left: 10 }}>
-        <ArrowBackIcon />
-      </IconButton>
+            <IconButton onClick={goBack} style={{ position: 'absolute', top: 10, left: 10 }}>
+                <ArrowBackIcon />
+            </IconButton>
             <div className="score">
                 <div>Correct: {correctCount}&emsp;  |  &emsp;Incorrect: {incorrectCount}</div>
             </div>
             <h1>Minibeast Math</h1>
             <div className='BodyText'>Count the bugs and enter your answer to check if it is correct.</div>
-          <div className="numbers">
-        {insectIndices1.map((index, i) => (
-          <img key={i} src={minibeasts[index].image} alt={minibeasts[index].name} />
-        ))}
-        <h2 className='Symbols'>+</h2>
-        {insectIndices2.map((index, i) => (
-          <img key={i} src={minibeasts[index].image} alt={minibeasts[index].name} />
-        ))}
+            <div className="numbers">
+                {insectIndices1.map((index, i) => (
+                    <img key={i} src={minibeasts[index].image} alt={minibeasts[index].name} />
+                ))}
+                <h2 className='Symbols'>+</h2>
+                {insectIndices2.map((index, i) => (
+                    <img key={i} src={minibeasts[index].image} alt={minibeasts[index].name} />
+                ))}
                 <h2 className='Symbols'>=</h2>
                 <div className="input-check-container">
                     <input
@@ -148,6 +182,7 @@ function MathGame({ onStart }) {
                         className="Check"
                         onClick={checkAnswer}
                         onMouseLeave={stopAudio}
+                        disabled={buttonDisabled}
                     >
                         Check
                     </button>
@@ -183,8 +218,41 @@ function MathGame({ onStart }) {
                     Erase
                 </button>
 
+
             </div>
+            <Modal
+                open={showModal}
+                onClose={closeModal}
+                aria-labelledby="modal-title"
+                aria-describedby="modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        bgcolor: 'background.paper',
+                        boxShadow: 24,
+                        borderRadius: '5px',
+                        p: 4,
+                        minWidth: '30%',
+                        maxWidth: '90%',
+                        textAlign: 'center',
+
+                    }}
+                >
+                    <h2 id="modal-title">Final Score</h2>
+                    <p className='finalscore'>
+                        Correct: {correctCount} <br />
+                        Incorrect: {incorrectCount}
+                    </p>
+                    <button className="quiz-modal-button" onClick={handleExit}>Close</button>
+                </Box>
+            </Modal>
+
         </div>
+
     );
 }
 

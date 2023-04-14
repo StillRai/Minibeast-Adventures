@@ -18,6 +18,10 @@ body {
   position: relative;
 }
 
+#modal-title {
+  margin-top: 0px ;
+    }
+    
 .back-icon {
   position: absolute;
   top: 10px;
@@ -47,6 +51,26 @@ body {
   margin-top: -100px;
 
 }
+
+.EnglishGame .quiz-modal-button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  margin: 1rem;
+  background-color: #2D5D7B;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
+  margin-bottom: 0px !important;
+}
+
+.EnglishGame .quiz-modal-button:hover {
+  background-color: #16a085;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
 
 .finalscore{
   text-align: center;

@@ -150,6 +150,21 @@ function EnglishGame({ onStart }) {
     { name: 'Ant', image: antImg },
   ];
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const handlePlayAgain = () => {
+    resetGame();
+    closeModal();
+  };
+
+  const handleExit = () => {
+    closeModal();
+    goBack();
+  };
+
+
   const generateRandomQuestion = useCallback(() => {
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     setCorrectAnswer(randomQuestion.answer);
@@ -177,7 +192,7 @@ function EnglishGame({ onStart }) {
 
   const checkAnswer = (chosenAnswer) => {
     setButtonDisabled(true);
-    stopAudio(); // Move this call to the beginning
+    stopAudio();
     if (chosenAnswer === correctAnswer) {
       setResult('Correct!');
       setCorrectCount(correctCount + 1);
@@ -212,8 +227,9 @@ function EnglishGame({ onStart }) {
       <IconButton onClick={goBack} style={{ position: 'absolute', top: 10, left: 10 }}>
         <ArrowBackIcon />
       </IconButton> 
-      <div className="score">Correct: {correctCount} / 10 </div>
-      <h1>Minibeast Quiz</h1>
+  <div className="score">
+                <div>Correct: {correctCount}&emsp;  |  &emsp;Incorrect: {incorrectCount}</div>
+            </div>      <h1>Minibeast Quiz</h1>
       <div className="question">
         <div className="BodyText">{question}</div>
         <div className="options">
@@ -228,25 +244,28 @@ function EnglishGame({ onStart }) {
         </div>
       </div>
       <div className="result">{result}</div>
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal open={showModal} onClose={closeModal}>
         <Box
           sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            bgcolor: 'background.paper',
-            border: '2px solid #000',
-            boxShadow: 24,
-            p: 4,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      bgcolor: 'background.paper',
+      boxShadow: 24,
+      borderRadius: '5px',
+      p: 4,
+      minWidth: '30%',
+      maxWidth: '90%',
+      textAlign: 'center',
           }}
         >
           <h2>Final Score</h2>
-          <div className='finalscore'>{correctCount > incorrectCount ? <SentimentVerySatisfiedIcon /> : <SentimentVeryDissatisfiedIcon /> }</div>
           <p className='finalscore'>
             Correct: {correctCount} <br />
             Incorrect: {incorrectCount}
           </p>
+          <button className="quiz-modal-button" onClick={handleExit}>Close</button>
         </Box>
       </Modal>  
     </div>

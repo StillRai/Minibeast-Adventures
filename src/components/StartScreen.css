@@ -17,6 +17,10 @@
     margin-bottom: 2rem;
   }
    
+  .Home-Modal{
+    padding-top: 22vw ;
+  }
+
   .StartScreen button {
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
