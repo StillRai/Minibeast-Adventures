@@ -30,12 +30,12 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-    min-width: 150px;
+    transition: background-color 0.4s ease-in-out, transform 0.2s ease-in-out;
+    /* min-width: 150px; */
   }
   
   .StartScreen button:hover {
-    background-color: #2D424E;
+    background-color: #537c93;
   }
 
   /*App CSS */
@@ -80,6 +80,8 @@ body {
   position: absolute;
   top: 0;
   right: 0;
+  background-color :rgba(255, 255, 255, 0);
+
 }
 
 .StartScreen video {
