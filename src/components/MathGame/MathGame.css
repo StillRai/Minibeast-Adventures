@@ -1,38 +1,41 @@
 .MathGame {
-    background-image: url("../../images/bg_8.jpg");
-    background-size: cover;
-    background-position: left 0 top -20px;
-    background-repeat: no-repeat;
-    min-height: 100vh;
-    background-color: #fff;
+  background-image: url("../../images/bg_8.jpg");
+  background-size:cover;
+  background-position: left 0 top 0px; 
+  background-repeat: no-repeat;
+  background-color: #fff;
+  min-height: 100vh;
   }
   
   .MathGame h1 {
     font-size: 2rem;
-    margin-bottom: 2rem;
     font-family: 'Poppins', sans-serif;
     color: black;
-    margin-top: 7vw;
+    padding-top: 5vw;
+  }
+
+  .MathGame .BodyText {
+    padding-bottom: 5vh !important;
   }
   
   .MathGame h2 {
     font-size: 2rem;
-    margin-bottom: 0rem;
-    margin-top: -0.4rem;
+    margin: 5px;
+
   }
   
   .MathGame img {
-    height: 80px;
-    margin: 0.5rem;
+    height: 70px;
+    padding: 0.5rem;
   }
   
   .MathGame p {
     font-size: 1.2rem;
-    margin: 1rem;
+    padding: 1rem;
   }
   
   .MathGame input {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     padding: 0.5rem;
     margin: 0.5rem;
     border-radius: 8px;
@@ -59,18 +62,19 @@
   }
   
   .MathGame .Check {
-    padding: 0.5rem;
-    margin: 0rem;
     border-radius: 8px;
     text-align: center;
     height: 57px;
     max-width: 400px;
     font-family: 'Poppins', sans-serif;
-  }
+margin-top: 2px; }
   
   .BodyText {
     font-size: 1.3rem;
+    padding-bottom: 0px !important;
     color: white;
+    margin-bottom: 30px;
+
   }
   
   .MathGame .error {
@@ -93,7 +97,7 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
-  
+
     transition: background-color 0.2s ease-in-out;
     margin-bottom: 0px !important;
   }
@@ -124,10 +128,13 @@
   @media (max-width: 768px) {
     .MathGame h1 {
       font-size: 1.8rem;
+      padding-top: 25vw;
+      margin-top: 0px !important;
     }
   
     .MathGame h2 {
         font-size: 1.8rem;
+        margin:0px !important;
       }
       
       .MathGame img {
@@ -141,21 +148,19 @@
       .MathGame input {
         height: 35px;
         max-width: 300px;
-      }
-      
-      .MathGame .score {
-        font-size: 0.6rem;
+        /* margin-bottom: 30px; */
       }
       
       .input-check-container {
-        flex-direction: row
+        flex-direction: row;
+        margin-top: 10px; 
       }
       
       .MathGame .Check {
         height: 50px;
         max-width: 300px;
         font-size: 1.4vh;
-
+        /* margin-top: -20px;  */
       }
       
       .BodyText {
@@ -163,7 +168,8 @@
       }
       
       .MathGame .result {
-        font-size: 0.8rem !important;
+        font-size: 1rem !important;
+    padding-bottom: 15px;
       }
       
       .MathGame button {
